@@ -9,6 +9,8 @@ let hands = [];
 let order = [];
 let p1 = [], p2 = [], sp =[], burgerleaving=[];
 let run=false,hover1=false,hover2=false,hover3 =false;
+let clouds=[];
+
 
 //end game properties
 satisfiedcustomers = 0;
@@ -78,6 +80,22 @@ window.addEventListener("DOMContentLoaded",function() {
     dumpster2 = document.querySelector("#dumpster2");
     trashbag = document.querySelector("#trashbag");
     trashbag.setAttribute("position",{x:0,y:-100,z:0});
+
+
+    //tree and clouds
+    for(let i = 0; i < 75; i++){
+        let tree = new Tree(rnd(50,70), 0 , rnd(-80,80));
+        tree.scale(2,4);
+    }
+    for(let i = 0; i < 30; i++){
+        let tree = new Tree(rnd(-20, 30), 0 , rnd(-90,-55));
+        tree.scale(2,4);
+    }
+
+    for (let i = 0; i<150; i++){
+        clouds.push(new Cloud(rnd(-90, 70), 10, rnd(-70,70)));
+    }
+
 
     startWorldClock();
     setTimeout(loop, 1000);
@@ -433,7 +451,9 @@ trashcapacity=5;
 // game loop
 function loop(){
     // CLOSING PROPERTIES ===============================================================
-
+    for (let cloud of clouds){
+        cloud.fly();
+    }
     if (closing){
         // clear out all customers in the store
         for (let customers of spawnedcustomers){
