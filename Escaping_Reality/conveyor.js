@@ -29,6 +29,7 @@ class Conveyor{
         
                 this.topbun.addEventListener("click", ()=>{
                     if(hands.length<1 && this.topbun.object3D.position.z==-0.8&& Math.round(distance(camera, this.topbun))<4){
+                        camera.components.sound.playSound();
                         this.topbun.object3D.position.y=-10;
                         hands.push(this.topbun);
 
@@ -49,6 +50,7 @@ class Conveyor{
                
                  this.botbun.addEventListener("click", ()=>{
                     if (hands.length<1 && this.botbun.object3D.position.z==-0.8&& Math.round(distance(camera, this.botbun))<4){
+                        camera.components.sound.playSound();
                         this.botbun.object3D.position.y=-10;
                         hands.push(this.botbun);
                         listpop(this.botbun);
@@ -65,6 +67,7 @@ class Conveyor{
                 listadd(this.pickles);
                 this.pickles.addEventListener("click", ()=>{
                     if (hands.length<1 && this.pickles.object3D.position.z==-0.8&& Math.round(distance(camera, this.pickles))<4){
+                        camera.components.sound.playSound();
                         this.pickles.object3D.position.y=-10;
                         hands.push(this.pickles);
                         listpop(this.pickles);
@@ -82,6 +85,7 @@ class Conveyor{
                 listadd(this.patty);
                 this.patty.addEventListener("click", ()=>{
                     if (hands.length<1 && this.patty.object3D.position.z==-0.8&& Math.round(distance(camera, this.patty))<4){
+                        camera.components.sound.playSound();
                         this.patty.object3D.position.y=-10;
                         hands.push(this.patty);
                         listpop(this.patty);
@@ -99,6 +103,7 @@ class Conveyor{
                 listadd(this.cheese);
                 this.cheese.addEventListener("click", ()=>{
                     if (hands.length<1 && this.cheese.object3D.position.z==-0.8&& Math.round(distance(camera, this.cheese))<4){
+                        camera.components.sound.playSound();
                         this.cheese.object3D.position.y=-10;
                         listpop(this.cheese);
                         hands.push(this.cheese);

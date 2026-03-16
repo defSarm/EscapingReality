@@ -1,6 +1,7 @@
 class Tree{
   constructor(x,y,z){
     this.obj = document.createElement("a-entity");
+    this.obj.setAttribute("shadow","receive: true");
   
     let pines = document.createElement("a-cone");
     pines.setAttribute("color","green");
@@ -27,11 +28,13 @@ class Cloud{
 
     this.obj = document.createElement("a-entity");
     this.obj.setAttribute("rotation",{x:0,y:90,z:0});
+
+
     this.x = x;
     this.y=y;
     this.z=z;
   
-    this.dx = 0.1;
+    this.dx = 0.05;
     let shapes = ["a-dodecahedron","a-icosahedron","a-octahedron","a-tetrahedron"];
 
     for(let i = -1; i <= 1; i++){

@@ -13,7 +13,7 @@
 
   </head>
   <body>
-    <a-scene physics="debug: false">
+    <a-scene physics="debug: false" light="defaultLightsEnabled: false" sound="src: #backgroundmusic;loop:true;volume:1.3">
         <a-assests>
             <img src="burgeritems/topbun.png" id="topbunimg">
             <img src="burgeritems/bottombun.png" id="botbunimg">
@@ -25,8 +25,21 @@
             <img src="extraimgs/wood.jpg" id="wood">
             <img src="extraimgs/floor.jpg" id="storetiles">
             <img src="extraimgs/walls.jpg" id="wall">
+
+            <audio id="bellSound" src="sound/bell.wav" preload="auto"></audio>
+            <audio id="item" src="sound/item.mp3" preload="auto"></audio>
+            <audio id="trash" src="sound/trash.mp3" preload="auto"></audio>
+            <audio id="backgroundmusic" src="sound/backgroundmusic.mp3" preload="auto"></audio>
         </a-assests>
 
+        <a-sphere position="0 5 0" radius="0.5"  rotation="180 0 0" color="white" light="type:ambient;intensity:0.8"></a-sphere>
+
+        <!--Light Ambiance-->
+        <a-entity light="type: ambient; intensity:0.3"></a-entity>
+        <a-box id="light_source" position="30 -1 0 " rotation="0 90 -90">
+            <a-sphere position="0 80 0" radius="2"  rotation="0 90 0" color="yellow" light="type:directional;castShadow:true;intensity:3"></a-sphere>
+        </a-box>
+        
     <!--customer orders-->
         <a-entity id="orders" position="-7.25 1.5 8.5" rotation="0 -25 0">
             <a-box id="slot1" opacity = 0 position="0 0 0" height="0.3" depth="0.1"></a-box>
@@ -43,7 +56,7 @@
         <a-box id="patience" position="-5.58 2.8 9.4" depth="0.1" width="1.4" height="0.2" color="green" opacity="0"></a-box>
 
     <!--customer-->
-        <a-entity id="customer1" position="-6 -10 9" rotation="0 180 0">
+        <a-entity id="customer1" position="-6 -10 9" rotation="0 180 0" shadow="receive: true">
             <a-box position="-0.2 2 0.42" rotation="0 0 5" width="0.25" height="0.05" depth="0.05" color="black" id="eyebrowleft1"></a-box>
             <a-box position="0.2 2 0.42" rotation="0 0 -5" width="0.25" height="0.05" depth="0.05" color="black" id="eyebrowright1"></a-box>
             <a-sphere position="-0.2 1.8 0.42" radius="0.1" color="black"></a-sphere>
@@ -53,7 +66,7 @@
             <a-sphere position="0 0.6 0" radius="0.5" rotation="0 0 180" theta-start="0" theta-length="90"></a-sphere>
         </a-entity>
 
-        <a-entity id="customer2" position="3 -10 13" rotation="0 180 0">
+        <a-entity id="customer2" position="3 -10 13" rotation="0 180 0" shadow="receive: true">
             <a-sphere position="0 1.8 -0.01" radius="0.45" theta-start="0" theta-length="80" side="double" rotation="-5 0 0" color="#333232"></a-sphere>
             <a-cylinder radius="0.4" position="0 1.9 -0.35" height="0.1" rotation="-5 0 0" color="#333232"></a-cylinder>
 
@@ -66,7 +79,7 @@
             <a-sphere position="0 0.6 0" radius="0.5" rotation="0 0 180" theta-start="0" theta-length="90"></a-sphere>
         </a-entity>
 
-        <a-entity id="customer3" position="0 -10 13" rotation="0 180 0">
+        <a-entity id="customer3" position="0 -10 13" rotation="0 180 0" shadow="receive: true">
             <a-entity id="earbudL" position="-0.43 1.8 0.1" rotation="-10 0 -5" scale="0.9 0.9 0.9">
                 <a-cylinder position="0 0 0"  rotation="0 0 90" height="0.05" radius="0.1" color="black"></a-cylinder>
                 <a-sphere position="0 0 0" rotation="0 0 90" radius="0.1" color="#E3E3E3"></a-sphere>
@@ -104,7 +117,7 @@
         <a-box id="cheese" position="1 -10 0" height="0.05" width="1.1" depth="1.1" color="#f9de3f"> </a-box>
         
     <!--bell-->
-        <a-entity id="bell" position="-4.3 1.2 6.4">
+        <a-entity id="bell" position="-4.3 1.2 6.4" sound="src: #bellSound;loop:false;volume:0.5">
             <a-cylinder radius="0.3" height="0.05" color="#5C4033"></a-cylinder>
             <a-sphere radius="0.25" color="#F0E68C"></a-sphere>
             <a-cylinder radius="0.03" height="0.1" color="#7393B3" position="0 0.23 0"></a-cylinder>
@@ -124,7 +137,7 @@
     <!-- WORLD CLOCK -->
         <a-box position="-10 1.5 0" width="1" depth="0.5" height="0.5" rotation="0 90 0"> </a-box>
         <a-box position="-9.95 1.5 0" width="0.9" depth="0.5" height="0.4" rotation="0 90 0" color="#343434"> </a-box>
-        <a-text id="WORLDCLOCK" position="-9.7 1.5 0.3" color="red" value="9:00A" rotation="0 90 0"></a-text>
+        <a-text id="WORLDCLOCK" position="-9.7 1.5 0.3" color="red" value="9:00A" rotation="0 90 0" ></a-text>
         
         <a-box static-body position="-10 0.45 0" width="16" height="1.25" depth="2" rotation="0 90 0"></a-box>
         <a-box static-body position="-10 1.13 0" width="16" height="0.1" depth="2.1" rotation="0 90 0" color="#C2B280"></a-box>
@@ -163,7 +176,7 @@
             <a-box position="0 0.65 0" rotation="8 0 0" width="0.45" height="0.35" depth="0.01" color="#F2F2F2"></a-box>
         </a-entity>
 
-        <a-entity id="register" position="-9 0 6.75" rotation="0 -25 0">
+        <a-entity id="register" position="-9 0 6.75" rotation="0 -25 0" >
             <a-box position="0 1.25 0" height="0.5" color="#797979"></a-box>
             <a-box position="0 1.25 -0.02" height="0.45" width="0.95" color="#AAAAAA"></a-box>
             <a-cylinder position="0 1.55 0.33" radius="0.35" rotation="0 0 90" color="#797979"></a-cylinder>
@@ -191,7 +204,7 @@
                 <a-cylinder position="0 0.32 0" radius="0.75" height="0.1"></a-cylinder>      
         </a-entity>
 
-        <a-entity id="plate1" position="0 0.76 6.75">
+        <a-entity id="plate1" position="0 0.76 6.75" >
             <a-box position="0 0.5 0" opacity="0"></a-box>
             <a-cylinder position="0 0.5 0" radius="0.6" height="0.1"></a-cylinder>
             <a-cylinder position="0 0.57 0" radius="0.75" height="0.1"></a-cylinder>
@@ -849,7 +862,7 @@
         <a-box position="-2.5 0 7.5" width="35" height="0.1" depth="35" color="	#E1C16E"></a-box>
 
         <!--Trashcan-->
-        <a-entity id="trashcan" static-body position="13.7 0.75 5" rotation="0 -135 0" scale="1.5 1.5 1.5">
+        <a-entity id="trashcan" static-body position="13.7 0.75 5" rotation="0 -135 0" scale="1.5 1.5 1.5" sound="src: #trash;loop:false;volume:1">
             <a-text id="trashtext" value="FULL" color="red" position="-0.3 1 0.4" opacity="0"> </a-text>
             <a-text value="Trash" position="-0.3 0 0.4"></a-text>
             <a-box color="#404040" width="0.75" depth="0.75"></a-box>
@@ -881,11 +894,11 @@
         <a-box position="40 0 -10" rotation="0 90 0" width="200" height="0.1" width=2 depth="16" color="gray" src="#concrete" repeat="6 2 1"></a-box>
 
         <a-entity class="signagedecor">
-            <a-box position="21 0.5 7.5" rotation="0 90 0" width="35" height="2" depth="0.5" src="#shrub" repeat="8 1 1"></a-box>
-            <a-box position="25 0.5 25" rotation="0 90 0" width="0.5" height="2" depth="8" src="#shrub" repeat="4 1 1"></a-box>
-            <a-box position="25 0.5 -9.5" rotation="0 90 0" width="0.5" height="2" depth="8" src="#shrub" repeat="4 1 1"></a-box>
+            <a-box position="21 0.5 7.5" rotation="0 90 0" width="35" height="2" depth="0.5" src="#shrub" repeat="8 1 1" shadow="receive: true"></a-box>
+            <a-box position="25 0.5 25" rotation="0 90 0" width="0.5" height="2" depth="8" src="#shrub" repeat="4 1 1" shadow="receive: true"></a-box>
+            <a-box position="25 0.5 -9.5" rotation="0 90 0" width="0.5" height="2" depth="8" src="#shrub" repeat="4 1 1" shadow="receive: true"></a-box>
 
-            <a-entity class="bench1" position="45 -0.5 32" scale="2 2 2">
+            <a-entity class="bench1" position="45 -0.5 32" scale="2 2 2" shadow="receive: true">
                 <a-box position="-10 0.5 -4" width="1.5" height="0.1" depth="0.5" color="#8B4513"></a-box>
                 
                 <a-box position="-9.25 0.25 -4.25" width="0.1" height="0.5" depth="0.1" color="#8B4513"></a-box>
@@ -893,7 +906,7 @@
                 <a-box position="-9.25 0.25 -3.75" width="0.1" height="0.5" depth="0.1" color="#8B4513"></a-box>
                 <a-box position="-10.75 0.25 -3.75" width="0.1" height="0.5" depth="0.1" color="#8B4513"></a-box>
             </a-entity>
-            <a-entity class="bench2" position="45 -0.5 -0.5" scale="2 2 2">
+            <a-entity class="bench2" position="45 -0.5 -0.5" scale="2 2 2" shadow="receive: true">
                 <a-box position="-10 0.5 -4" width="1.5" height="0.1" depth="0.5" color="#8B4513"></a-box>
                 
                 <a-box position="-9.25 0.25 -4.25" width="0.1" height="0.5" depth="0.1" color="#8B4513"></a-box>
@@ -925,28 +938,28 @@
         </a-entity>
 
         <!-- Trash Area & Back Fencing -->
-        <a-entity class="trasharea">
-            <a-entity id="dumpster" position="-1 0 -11" rotation="10 180 0">
+        <a-entity class="trasharea" shadow="receive: true">
+            <a-entity id="dumpster" position="-1 0 -11" rotation="10 180 0" >
                 <a-box position="0 0.5 0" height="2" width="2.5" depth="1.5" color="#097969"></a-box>
                 <a-box position="-0.6 1.5 0" rotation="90 0 0" height="1.4" width="1.1" depth="0.1" color="black"></a-box>
                 <a-box position="0.6 1.5 0" rotation="90 0 0" height="1.4" width="1.1" depth="0.1" color="black"></a-box>
                 <a-box position="0 1 0" height="0.1" width="2.75" depth="1.4" color="#023020"></a-box>
             </a-entity>
-            <a-entity class="trashbags" position="-3 0 -11" rotation="0 90 0">
+            <a-entity class="trashbags" position="-3 0 -11" rotation="0 90 0" >
                 <a-sphere position="0.5 0.2 0" radius="0.5" color="#343434"></a-sphere>
                 <a-sphere position="0.7 0.75 0" radius="0.2" color="#343434"></a-sphere>
                 <a-sphere position="0 0.2 0" radius="0.5" color="#343434"></a-sphere>
                 <a-sphere position="0.2 0.75 0" radius="0.2" color="#343434"></a-sphere>
             </a-entity>
-            <a-entity id="dumpster2" position="3 0 -11" rotation="10 180 0">
+            <a-entity id="dumpster2" position="3 0 -11" rotation="10 180 0" >
                 <a-box position="0 0.5 0" height="2" width="2.5" depth="1.5" color="#097969"></a-box>
                 <a-box position="-0.6 1.5 0" rotation="90 0 0" height="1.4" width="1.1" depth="0.1" color="black"></a-box>
                 <a-box position="0.6 1.5 0" rotation="90 0 0" height="1.4" width="1.1" depth="0.1" color="black"></a-box>
                 <a-box position="0 1 0" height="0.1" width="2.75" depth="1.4" color="#023020"></a-box>
             </a-entity>
         </a-entity>
-        <a-entity class="BackFenceRight">
-            <a-entity class="fenceset1" position="-20 0 -16.75" scale="2 2 2">
+        <a-entity class="BackFenceRight" shadow="receive: true">
+            <a-entity class="fenceset1" position="-20 0 -16.75" scale="2 2 2" >
                 <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -982,8 +995,8 @@
             </a-entity>
             
         </a-entity>
-        <a-entity class="BackFenceLeft">
-            <a-entity class="fenceset1" position="-20 0 26.75" scale="2 2 2">
+        <a-entity class="BackFenceLeft" shadow="receive: true">
+            <a-entity class="fenceset1" position="-20 0 26.75" scale="2 2 2" >
                 <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1017,7 +1030,7 @@
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
             </a-entity>
-            <a-entity class="fenceset2" position="-20 0 34.75" scale="2 2 2">
+            <a-entity class="fenceset2" position="-20 0 34.75" scale="2 2 2" >
                 <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1094,8 +1107,8 @@
                 </a-entity>
             </a-entity>
         </a-entity>
-        <a-entity class="BackFenceLeft2" rotation="0 90 0" position="-47.5 0 31.5">
-            <a-entity class="fenceset1" position="-20 0 26.75" scale="2 2 2">
+        <a-entity class="BackFenceLeft2" rotation="0 90 0" position="-47.5 0 31.5" shadow="receive: true">
+            <a-entity class="fenceset1" position="-20 0 26.75" scale="2 2 2" >
                 <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1129,7 +1142,7 @@
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
             </a-entity>
-            <a-entity class="fenceset2" position="-20 0 34.75" scale="2 2 2">
+            <a-entity class="fenceset2" position="-20 0 34.75" scale="2 2 2" >
                 <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1163,49 +1176,7 @@
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
             </a-entity>
-            <a-entity class="fenceset3" position="-20 0 42.75" scale="2 2 2">
-                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
-                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.6 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
-                </a-entity>
-                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0">
-                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.6 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"> </a-box>
-                    <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
-                </a-entity>
-                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0">
-                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.6 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
-                </a-entity>
-                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0">
-                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.6 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
-                </a-entity>
-                <a-entity class="fence" position="0 0 4.3" rotation="0 90 0">
-                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.6 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
-                    <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
-                </a-entity>
-            </a-entity>
-            <a-entity class="fenceset4" position="-20 0 50.75" scale="2 2 2">
+            <a-entity class="fenceset3" position="-20 0 42.75" scale="2 2 2" >
                 <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1247,7 +1218,49 @@
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
             </a-entity>
-            <a-entity class="fenceset5" position="-20 0 58.75" scale="2 2 2">
+            <a-entity class="fenceset4" position="-20 0 50.75" scale="2 2 2" >
+                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
+                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.6 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
+                </a-entity>
+                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0">
+                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.6 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"> </a-box>
+                    <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
+                </a-entity>
+                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0">
+                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.6 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
+                </a-entity>
+                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0">
+                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.6 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
+                </a-entity>
+                <a-entity class="fence" position="0 0 4.3" rotation="0 90 0">
+                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.6 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
+                    <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
+                </a-entity>
+            </a-entity>
+            <a-entity class="fenceset5" position="-20 0 58.75" scale="2 2 2" >
                 <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1282,17 +1295,17 @@
                 </a-entity>
             </a-entity>
         </a-entity>
-        <a-entity class="BackFenceLeft3" rotation="0 0 0" position="38 0 17">
+        <a-entity class="BackFenceLeft3" rotation="0 0 0" position="38 0 17" shadow="receive: true">
             <a-entity class="fenceset1" position="-20 0 26.75" scale="2 2 2">
-                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
-                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
+                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0"  >
+                    <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1" ></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.6 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0"  >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1300,7 +1313,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"> </a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0"  >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1308,7 +1321,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0"  >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1318,7 +1331,7 @@
                 </a-entity>
             </a-entity>
             <a-entity class="fenceset2" position="-20 0 34.75" scale="2 2 2">
-                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0"  >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1326,7 +1339,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0"  >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1334,7 +1347,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"> </a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0"  >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1342,7 +1355,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1352,7 +1365,7 @@
                 </a-entity>
             </a-entity>
             <a-entity class="fenceset3" position="-20 0 42.75" scale="2 2 2">
-                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1360,7 +1373,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1368,7 +1381,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"> </a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1376,7 +1389,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1384,7 +1397,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 4.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 4.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1394,7 +1407,7 @@
                 </a-entity>
             </a-entity>
             <a-entity class="fenceset4" position="-20 0 50.75" scale="2 2 2">
-                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1402,7 +1415,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1410,7 +1423,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"> </a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1418,7 +1431,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1426,7 +1439,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 4.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 4.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1436,7 +1449,7 @@
                 </a-entity>
             </a-entity>
             <a-entity class="fenceset5" position="-20 0 58.75" scale="2 2 2">
-                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 0.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1444,7 +1457,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 1.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1452,7 +1465,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"> </a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 2.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1460,7 +1473,7 @@
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.8 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.65" depth="0.15" position="1 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                 </a-entity>
-                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0">
+                <a-entity class="fence" position="0 0 3.3" rotation="0 90 0" >
                     <a-box width="0.15" height="1.65" depth="0.15" position="0 0.8 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.2 0.7 0" src="#wood" repeat="1 6 1"></a-box>
                     <a-box width="0.15" height="1.5" depth="0.05" position="0.4 0.7 0" src="#wood" repeat="1 6 1"></a-box>
@@ -1473,7 +1486,7 @@
 
 
         <!--RightBuilding-->
-        <a-entity class="SmallMart" position="-5 0 -32">
+        <a-entity class="SmallMart" position="-5 0 -32"  shadow="receive: true">
             <!--OUTISDE FLOORING-->
             <a-box position="11 0 -17.25" rotation="0 0 0" width="52" rotation="0 0 0" height="0.1" depth="7" src="#concrete" repeat="6 2 0"></a-box>
             <a-box position="35.5 0 0" rotation="0 90 0" width="27.5" depth="3" height="0.1" repeat="3 1 1 " src="#concrete"></a-box>
@@ -1995,7 +2008,7 @@
         </a-entity>
 
         <!--LeftBuildings-->
-        <a-entity class="GenericHouse1" position="10 0 62" rotation="0 0 0" scale="1.5 1.5 1.5">
+        <a-entity class="GenericHouse1" position="10 0 62" rotation="0 0 0" scale="1.5 1.5 1.5" shadow="receive: true">
 
             <a-entity class="platform">
                 <a-box position="0 0.25 2" width="5" height="0.5" depth="0.1" src="#bricks" repeat="4 1 4"></a-box>
@@ -2495,7 +2508,7 @@
 
         </a-entity>
 
-        <a-entity class="GenericHouse4" position="0 0 62" rotation="0 0 0" scale="1.5 1.5 1.5">
+        <a-entity class="GenericHouse4" position="0 0 62" rotation="0 0 0" scale="1.5 1.5 1.5" shadow="receive: true">
             <a-entity class="frontwall" position="0 0 0" rotation="0 0 0">
                 <a-entity class="plankright" position="2 0 0">
                     <a-box position="0 0.5 0" width="1" height="1" depth="0.1" src="" color="#F0EAD6"></a-box>
@@ -2897,7 +2910,7 @@
 
         </a-entity>
 
-        <a-entity class="GenericHouse4" position="-10 0 62" rotation="0 0 0" scale="1.5 1.5 1.5">
+        <a-entity class="GenericHouse4" position="-10 0 62" rotation="0 0 0" scale="1.5 1.5 1.5" shadow="receive: true">
             <a-entity class="frontwall" position="0 0 0" rotation="0 0 0">
                 <a-entity class="plankright" position="2 0 0">
                     <a-box position="0 0.5 0" width="1" height="1" depth="0.1" src="" color="#F0EAD6"></a-box>
@@ -3300,7 +3313,7 @@
         </a-entity>
 
         <!--Backend Buildings-->
-        <a-entity id="building1" rotation="0 90 0" position="-17 0 -10">
+        <a-entity id="building1" rotation="0 90 0" position="-17 0 -10" shadow="receive: true">
 
             <a-entity class="floor1">
             <a-box class="floor" height="0.1" src="#concrete" position="-12.5 0 -16.5" width="15" depth="15"></a-box>
@@ -3566,7 +3579,7 @@
             
         </a-entity>
 
-        <a-entity id="building2" rotation="0 90 0" position="-17 0 10">
+        <a-entity id="building2" rotation="0 90 0" position="-17 0 10" shadow="receive: true">
 
             <a-entity class="floor1">
             <a-box class="floor" height="0.1" src="#concrete" position="-12.5 0 -16.5" width="15" depth="15"></a-box>
@@ -3832,7 +3845,7 @@
             
         </a-entity>
 
-        <a-entity id="building3" rotation="0 90 0" position="-17 0 -30">
+        <a-entity id="building3" rotation="0 90 0" position="-17 0 -30" shadow="receive: true">
 
             <a-entity class="floor1">
             <a-box class="floor" height="0.1" src="#concrete" position="-12.5 0 -16.5" width="15" depth="15"></a-box>
@@ -4104,10 +4117,10 @@
         
 
 
-        <a-plane static-body position="0 0 5" rotation="-90 0 0" width="200" height="200" color="#7BC8A4"></a-plane>
-        <a-sky color="#87CEEB"></a-sky>
+        <a-plane static-body position="0 0 5" rotation="-90 0 0" width="200" height="200" color="#7BC8A4" shadow="receive: true"></a-plane>
+        <a-sky color="#87CEEB" ></a-sky>
         <a-entity id="cameraRig" movement-controls="fly: true; speed: 0.5" position="0 1.8 0">
-          <a-camera position="30 1 0" rotation="0 90 0" id="camera" kinema-body="radius: 0.8">
+          <a-camera position="-3 1 0" rotation="0 90 0" id="camera" kinema-body="radius: 0.8" sound="src: #item;loop:false;volume:0.5">
             
             <a-cursor>
                 

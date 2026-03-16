@@ -50,6 +50,7 @@ window.addEventListener("DOMContentLoaded",function() {
     pickles = document.querySelector("#pickles");
     cheese = document.querySelector("#cheese");
 
+
     
     // customers
     customer1 = document.querySelector("#customer1");
@@ -93,7 +94,7 @@ window.addEventListener("DOMContentLoaded",function() {
     }
 
     for (let i = 0; i<150; i++){
-        clouds.push(new Cloud(rnd(-90, 70), 10, rnd(-70,70)));
+        clouds.push(new Cloud(rnd(-90, 70), 25, rnd(-70,70)));
     }
 
 
@@ -440,13 +441,14 @@ function customerpatience(start){
 
 
 // tutorial functions
-tutorial=false;
-closing=true;
+tutorial=true;
+closing=false;
 if (tutorial){
     capacity=4;
 }
 
-trashcapacity=5;
+
+
 
 // game loop
 function loop(){
@@ -454,6 +456,8 @@ function loop(){
     for (let cloud of clouds){
         cloud.fly();
     }
+    light_source.object3D.rotation.z += 0.00001;
+
     if (closing){
         // clear out all customers in the store
         for (let customers of spawnedcustomers){
@@ -479,6 +483,8 @@ function loop(){
     leftdoor.addEventListener("mouseenter",()=>{
         opendoors=true
         comment.setAttribute("value","Click E to open/close")
+        comment.setAttribute("position",{x:-0.14,y:-0.22,z:0} );
+        
     });
     leftdoor.addEventListener("mouseleave",()=>{
         opendoors=false;
@@ -488,6 +494,8 @@ function loop(){
     rightdoor.addEventListener("mouseenter",()=>{
         opendoors=true
         comment.setAttribute("value","Click E to open/close")
+        comment.setAttribute("position",{x:-0.14,y:-0.22,z:0} );
+
     });
     rightdoor.addEventListener("mouseleave",()=>{
         opendoors=false;
@@ -514,6 +522,7 @@ function loop(){
     dumpster.addEventListener("click", ()=>{
         
         if (hands[0].id == "trashbag"){
+            trashcan.components.sound.playSound();
             trashbag.setAttribute("position",{x:0,y:-100,z:0});
             righthand.setAttribute("position",{x:0.6,y: -0.6,z: 0.25});
             righthand.setAttribute("rotation",{x:15,y:0,z:0});
@@ -525,6 +534,7 @@ function loop(){
     dumpster2.addEventListener("click", ()=>{
         
         if (hands[0].id == "trashbag"){
+            trashcan.components.sound.playSound();
             trashbag.setAttribute("position",{x:0,y:-100,z:0});
             righthand.setAttribute("position",{x:0.6,y: -0.6,z: 0.25});
             righthand.setAttribute("rotation",{x:15,y:0,z:0});
@@ -535,6 +545,7 @@ function loop(){
     });
 
     // CLOSING PROPERTIES End ===============================================================
+    scene.components.sound.playSound();
     
 
     if (tutorial){
@@ -674,6 +685,10 @@ function loop(){
         }
             
 
+    } else{
+        tutorialguy.setAttribute("position",{x:0,y:-100,z:0});
+        hour=9;
+        minute=0;
     }
 
   // skip by 3 x
@@ -726,7 +741,9 @@ function loop(){
 
     // confirm order matching
     bell.addEventListener("click",()=>{
+        bell.components.sound.playSound();
         if (sp.length>=1 && order.length>=1 && clickable&& Math.round(distance(camera, bell))<4){
+            
             clickable=false;
             for (let i = 0; i<sp.length;i++){
                 if (sp[i].id==order[i] && sp.length==order.length){
@@ -799,9 +816,9 @@ function loop(){
     }
 
     trashcan.addEventListener("click", ()=>{
-        
+            
             if (hands.length==1&& Math.round(distance(camera, trashcan))<4){
-                
+                trashcan.components.sound.playSound();
                 if (!(trashcapacity>4)){
                     hands.pop();
                     trashcapacity++;
@@ -817,6 +834,7 @@ function loop(){
             }
             
             if (hands.length==0 && Math.round(distance(camera, trashcan))<4){
+                trashcan.components.sound.playSound();
                 if (trashcapacity>4){
                     trashbag.setAttribute("position", {x:-0.75,y:-0.45,z:0.5});
                     righthand.setAttribute("position",{x:0.1,y:-0.6,z:0.25});
@@ -835,6 +853,7 @@ function loop(){
     servingplate.addEventListener("click", ()=>{
 
         if (hands.length == 1 && sp.length<5 && Math.round(distance(camera, servingplate))<4 ){
+            camera.components.sound.playSound();
             plateadd(sp,hands[0]);
             sp.push(hands[0]);
             // delete item from hands
@@ -859,6 +878,7 @@ function loop(){
     
     plate1.addEventListener("click", ()=>{
         if (hands.length==1 && p1.length==0 && Math.round(distance(camera, plate1))<4){
+            camera.components.sound.playSound();
             plateadd(p1, hands[0]);
             p1.push(hands[0]);
             
@@ -887,6 +907,7 @@ function loop(){
     
     plate2.addEventListener("click", ()=>{
         if (hands.length==1 && p2.length<1 && Math.round(distance(camera, plate2))<4){
+            camera.components.sound.playSound();
             plateadd(p2, hands[0]);
             p2.push(hands[0]);
             

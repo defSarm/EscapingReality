@@ -8,7 +8,7 @@ class Customer{
         this.z = z;
         this.dz=0.05;
         this.dx=0.1;
-        this.speed=0.05;
+        this.speed=0.1;
 
     
         
