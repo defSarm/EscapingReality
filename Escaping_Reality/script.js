@@ -478,7 +478,7 @@ function loop(){
     for (let cloud of clouds){
         cloud.fly();
     }
-    light_source.object3D.rotation.z += 0.00001;
+    light_source.object3D.rotation.z += 0.0001;
 
     if (closing){
         // clear out all customers in the store
@@ -726,7 +726,7 @@ function loop(){
 
     
 
-    if (ready&& capacity<5&&hour==9&&tutorial==false){
+    if (ready&& capacity<5&& (hour==9||tutorial==false)){
         cstmr = new Customer(16,3);
     }
 
