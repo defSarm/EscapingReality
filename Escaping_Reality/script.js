@@ -1,7 +1,7 @@
 let scene,handslot,capacity=0,served=true,count=0,clickable=true,ordercomplete=false, orderreaction, customertimer=100, customerreaction="good", timerstart=false, firsttry=false;
 let trashcapacity=0;
 // extra game properties
-let closing=false, tutorial=false, opendoors=false;
+let closing=false, opendoors=false;
 let people = [], peopleleaving=[];
 let con1=[], con2=[], con3=[], con4=[], con5=[];
 let conveyoritems = [con1,con2,con3,con4,con5];
@@ -97,21 +97,37 @@ window.addEventListener("DOMContentLoaded",function() {
         clouds.push(new Cloud(rnd(-90, 70), 25, rnd(-70,70)));
     }
 
-
     startWorldClock();
     setTimeout(loop, 1000);
     //setTimeout(worldtimer, 1000);
 })
 
 // time of day
-let hour = 7
-let minute = 30
+
+let tutorial = localStorage.getItem("tutorial") === "true";
+function tutactivate(num) {
+    if (num ==1){
+        localStorage.setItem("tutorial", "true");
+        console.log("tutorial activated");
+    }
+    else if (num==2){
+        localStorage.setItem("tutorial", "false");
+    }
+    
+}
+
 
 function startWorldClock() {
     const clockText = document.querySelector("#WORLDCLOCK");
 
-    hour = 7;
-    minute = 30;
+    if (tutorial){
+        hour = 7;
+        minute = 30;
+    } else{
+        hour=9;
+        minute=0;
+    }
+    
 
     function updateClock() {
         // Stop at 5:00 PM
@@ -441,10 +457,16 @@ function customerpatience(start){
 
 
 // tutorial functions
-tutorial=true;
+
+
+
 closing=false;
+
+
 if (tutorial){
     capacity=4;
+} else{
+    capacity=0;
 }
 
 
@@ -687,8 +709,7 @@ function loop(){
 
     } else{
         tutorialguy.setAttribute("position",{x:0,y:-100,z:0});
-        hour=9;
-        minute=0;
+        
     }
 
   // skip by 3 x
@@ -705,7 +726,7 @@ function loop(){
 
     
 
-    if (ready&& capacity<5&&hour==9){
+    if (ready&& capacity<5&&hour==9&&tutorial==false){
         cstmr = new Customer(16,3);
     }
 
