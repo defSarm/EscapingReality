@@ -463,11 +463,13 @@ function customerpatience(start){
 closing=false;
 
 
+console.log(capacity);
 if (tutorial){
     capacity=4;
 } else{
     capacity=0;
 }
+console.log(capacity);
 
 
 
@@ -478,7 +480,7 @@ function loop(){
     for (let cloud of clouds){
         cloud.fly();
     }
-    light_source.object3D.rotation.z += 0.0001;
+    light_source.object3D.rotation.z += 0.001;
 
     if (closing){
         // clear out all customers in the store
@@ -549,7 +551,7 @@ function loop(){
             righthand.setAttribute("position",{x:0.6,y: -0.6,z: 0.25});
             righthand.setAttribute("rotation",{x:15,y:0,z:0});
             trashcapacity=0;
-            hands.pop;
+            hands.pop();
         }
         
     });
@@ -561,7 +563,7 @@ function loop(){
             righthand.setAttribute("position",{x:0.6,y: -0.6,z: 0.25});
             righthand.setAttribute("rotation",{x:15,y:0,z:0});
             trashcapacity=0;
-            hands.pop;
+            hands.pop();
         }
         
     });
@@ -726,8 +728,12 @@ function loop(){
 
     
 
-    if (ready&& capacity<5&& (hour==9||tutorial==false)){
-        cstmr = new Customer(16,3);
+    if (capacity<5){
+        console.log(capacity, tutorial, hour);
+        if (hour==9||tutorial==false){
+            cstmr = new Customer(16,3);
+        }
+            
     }
 
     for (let customer of spawnedcustomers){
