@@ -463,13 +463,12 @@ function customerpatience(start){
 closing=false;
 
 
-console.log(capacity);
+
 if (tutorial){
     capacity=4;
-} else{
+} else if (tutorial==false){
     capacity=0;
 }
-console.log(capacity);
 
 
 
@@ -728,12 +727,12 @@ function loop(){
 
     
 
-    if (capacity<5){
-        console.log(capacity, tutorial, hour);
-        if (hour==9||tutorial==false){
+    if (ready&&capacity<5){
+        
+        if (hour>9||tutorial==false){
             cstmr = new Customer(16,3);
         }
-            
+        
     }
 
     for (let customer of spawnedcustomers){

@@ -21,7 +21,7 @@ class Conveyor{
 
     
     conveyorfill(){
-        itemNum = rnd(1,6);
+        itemNum = rnd(1,7);
         if(conveyorcheck()){
             if (itemNum == 1){
                 this.topbun.setAttribute("position",{x:conveyors[conveyNum-1], y:0, z:this.z});
@@ -44,7 +44,7 @@ class Conveyor{
         
                 scene.append(this.topbun);
             }
-            if (itemNum == 2){
+            if (itemNum == 2||itemNum==6){
                 this.botbun.setAttribute("position",{x:conveyors[conveyNum-1], y:1.25, z:this.z});
                 listadd(this.botbun)
                
