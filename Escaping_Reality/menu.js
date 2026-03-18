@@ -26,13 +26,13 @@ class Menu{
             if (burgersize==3){
                 burgeritem = rnd(0,3);
                 order.push("botbun");
-                order.push(items[burgeritem]);
+                order.push("patty");
                 order.push("topbun");
             }
             if (burgersize == 4){
                 burgeritem = rnd(0,3);
                 order.push("botbun");
-                order.push(items[burgeritem]);
+                order.push("patty");
                 burgeritem = rnd(0,3);
                 order.push(items[burgeritem]);
                 order.push("topbun");
@@ -42,7 +42,7 @@ class Menu{
                 order.push("botbun");
                 order.push(items[burgeritem]);
                 burgeritem = rnd(0,3);
-                order.push(items[burgeritem]);
+                order.push("patty");
                 burgeritem = rnd(0,3);
                 order.push(items[burgeritem]);
                 order.push("topbun");
